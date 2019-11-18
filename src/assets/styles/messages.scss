@@ -1,0 +1,58 @@
+.message-sender{
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px 0;
+    .buttons{
+        .button{
+            background-color: rgb(77, 73, 73); 
+            color: white;
+            border: none;
+            border-radius: 23px;
+            padding: 10px 25px;
+            height: 30px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 10px;
+        }
+        .delete-button {
+            background-color: rgb(77, 73, 73); 
+            color: white;
+            border: none;
+            border-radius: 23px;
+            padding: 10px 20px;
+            height: 30px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 10px;
+        }
+    }
+}
+.message-receiver{
+    background-color: #D5D5D5;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px 0;
+}
+.message-sender::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+.message-receiver::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .time-right {
+    float: right;
+    color: #999;
+  }
+  
+  /* Style time text */
+  .time-left {
+    float: left;
+    color: #999;
+  }

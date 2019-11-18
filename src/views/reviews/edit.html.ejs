@@ -1,0 +1,7 @@
+
+<% if (currentUser) { %>
+    <% if (currentUser.category == "Admin" || currentUser.id == review.userId ) { %>
+      <h2>Edit Review</h2>
+      <%- include('_form') %>
+    <% } %>
+<% } %>

@@ -1,6 +1,48 @@
-<h1>Hello world</h1>
-<p>
-  App web version
-  <%= appVersion %>
-</p>
-<div id="react-app">Here a React app will be rendered</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Clothex</title>
+  </head>
+  <body class = "indexBody">
+    <div class="container">
+        <div class= mainPageInfo>
+          <h1>Clothex</h1>
+          <a class="divisors" href="<%- newSessionPath %>">Login</a>
+          <a class="divisors" href="<%- newUserPath %>">Register</a>
+          <a href="<%- publicationsListPath %>">Explore</a>
+        <div id="mainLogo">
+          <img src="<%= assetPath('Sheep.png') %>" alt="Logo" width="160" height="160" />
+        </div>
+      </div>
+      <div class="appExplanation">
+        <div class="firstImage">
+          <img src="<%= assetPath('shop.jpg') %>" alt="Logo" width="700"/>
+          <div class="overImageTextOne">Post your products</div>
+        </div>
+        <div class="secondImage">
+          <img src="<%= assetPath('ties.jpg') %>"alt="logo" width="700"/>
+          <div class="overImageTextTwo">Organize trades</div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="teamInfo">
+          <div class="Developers">
+            <p class="indicator">Created By</p>
+            <p>Sebastían Carreño</p>
+            <p>Hans Hartmann</p>
+            <p>Andrés Pincheira</p>
+          </div>
+          <div class="contacts">
+            <p class="indicator">Contacts</p>
+            <p>sncarreno@uc.cl</p>
+            <p>hhartmann@uc.cl</p>
+            <p>arpincheira@uc.cl</p>
+          </div>
+          <div class="hola">
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

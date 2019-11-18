@@ -1,0 +1,6 @@
+<% if (currentUser) { %>
+<% if (currentUser.category == "Admin" || currentUser.id == product.userId ) { %>
+  <h2>Edit Product</h2>
+  <%- include('_form') %>
+  <% } %>
+<% } %>

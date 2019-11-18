@@ -1,0 +1,45 @@
+<h2>Trade</h2>
+<% if (!tradesList.length) { %>
+    <p>No results</p>
+<% } else { %>
+    <table id="tradesList">
+        <thead>
+            <tr>
+                <th>User 1</th>
+                <th>User 2</th>
+                <th>Object 1</th>
+                <th>Object 2</th>
+                <th>State</th>
+                <th>Shipping Cost</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% tradesList.forEach((trade) => { %>
+                <tr>
+                    <td><a href="<%- tradeReceiverProfilePath(trade) %>"><%- trade.tradeReceiver.username %></a></td>
+                    <td><a href="<%- tradeMakerProfilePath(trade) %>"><%- trade.tradeMaker.username %></a></td>
+                    <td><%- trade.objectRequested.username %></td>
+                    <td><%- trade.objectOffered.username %></td>
+                    <td><%- trade.state %></td>
+                    <td><%- trade.shippingCost %></td>
+
+
+                    <% if (currentUser) { %>
+                        <% if (currentUser.category == "Admin" || currentUser.id == trade.userId ) { %>
+                            <% if (trade.state == "requested"){ %>
+                                <td>
+                                    <form action="<%- deleteTradePath(trade) %>" method="POST">
+                                        <input type="hidden" name="_method" value="delete"/>
+                                        <input type = "submit" value="Delete"/>
+                                    </form>
+                                </td>
+                            <% } %>
+                  <% } %>
+              <% } %>
+
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+<% } %>

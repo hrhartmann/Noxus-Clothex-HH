@@ -1,0 +1,6 @@
+<h2>New Chat</h2>
+<% if (currentUser) {%>
+    <%- include('_form') %>
+<% } else {%>
+    <h3>You have no acces to this view</h3>
+<% } %>

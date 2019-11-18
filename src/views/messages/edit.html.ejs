@@ -1,0 +1,7 @@
+
+<% if (currentUser) { %>
+    <% if (currentUser.category == "Admin" || currentUser.id == message.userId ) { %>
+      <h2>Edit Message</h2>
+      <%- include('_form') %>
+    <% } %>
+<% } %>

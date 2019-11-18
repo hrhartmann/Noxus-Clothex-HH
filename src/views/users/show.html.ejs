@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= user.name %>'s profile</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="<%= assetPath('navBar.scss') %>">
+  </head>
+  <body>
+    <div class="profile-page">
+      <div class="profile-page-right">
+        <h1><a><%- user.name %></a>
+          <a><%- user.lastName %></a></h1>
+        <h2><a><%- user.username %></a></h2>
+        <div class="user-info">
+          <h3>General Info</h3>
+          <p>E-mail <a><%- user.email %></a> </p>
+          <p>Adress <a><%- user.adress %></a> </p>
+          <p> Phone <a><%- user.phoneNumber %></a> </p>
+          <p>Reputation <a><%- user.reputation %></a> </p>
+        </div>
+        <% if (currentUser) { %>
+            <% if (currentUser.category == "Admin" || currentUser.id == user.id) { %>
+              <p><a href="<%- editUserPath(user) %>">Edit</a></p>
+              <p><a href="<%- apiMapUserPath(user) %>">Map</a></p>
+              <p>
+              <form action="<%- deleteUserPath(user) %>" method="POST">
+                <input type="hidden" name="_method" value="delete"/>
+                <input type = "submit" value="Delete Account"/>
+              </form>
+              </p>
+            <% } %>
+        <% } %>
+      </div>
+      <div class="profile-page-left">
+        <div class="profile-picture">
+            <a><img src="<%= assetPath('Profile_Picture.png.jpeg') %>" alt="Logo"/></a>
+        </div>
+        <div class="user-publications">
+            <h2>Publications</h2>
+            <% if (!userPublicationsList.length) { %>
+                <p>No publications found</p>
+            <% } else { %>
+                <div id="publicationsList">
+                    <% userPublicationsList.forEach((publication) => { %>
+                        <div class="datos" name="datos">
+                            <div class="publicationDiv">
+                                <h1><%- publication.title %></h1>
+                                <h3><%- publication.product.name %></h3>
+                                <p><%- publication.description %></p>
+                                <div class="publicationPicture">
+                                    <td><%- publication.image %></td>
+                                </div>
+                                <div class="publicationInfo">
+                                    <p><%- publication.createdAt.toISOString().split('T')[0] %></p>
+                                    <a href="<%- showPublicationPath(publication) %>">Show</a>
+                                    <a href="<%- editPublicationPath(publication) %>">Edit</a>
+                                    <p>
+                                        <form action="<%- deletePublicationPath(publication) %>" method="POST">
+                                            <input type="hidden" name="_method" value="delete"/>
+                                            <input type = "submit" value="Delete"/>
+                                        </form>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                    
+                </div>
+            <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

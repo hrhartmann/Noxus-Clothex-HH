@@ -1,0 +1,29 @@
+
+.tradeContainer{
+    display: flex;
+    flex-direction: row;
+    background-color: burlywood;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+
+
+.tradeBox{
+    flex-basis: 24%;
+    max-height: 250px;
+    display:flex;
+
+    border: 1px black solid;
+    padding: 5px;
+    margin: 0px;
+    text-transform: uppercase;
+}
+
+.tradeBox div{
+    border: 1px black solid;
+    padding: 5px;
+    margin: 0px;
+    overflow: auto;
+}

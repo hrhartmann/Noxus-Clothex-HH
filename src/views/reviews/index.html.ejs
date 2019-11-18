@@ -1,0 +1,45 @@
+<h2>Review</h2>
+<% if (currentUser) {%>
+    <% if (!reviewsList.length) { %>
+        <p>No results</p>
+    <% } else { %>
+        <table id="reviewsList">
+            <thead>
+                <tr>
+                    <th>Puntuality</th>
+                    <th>Satisfaction</th>
+                    <th>Quality</th>
+                    <th>Sended at</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% reviewsList.forEach((reivew) => { %>
+                    <tr>
+                        <td><%- reivew.puntuality %></td>
+                        <td><%- reivew.satisfaction %></td>
+                        <td><%- reivew.quality %></td>
+                        <td><%- reivew.createdAt.toISOString().split('T')[0]%></td>
+                        <% if (currentUser) { %>
+                            <% if (currentUser.category == "Admin" || currentUser.id == review.userId ) { %>
+
+                            <td><a href="<%- editReviewPath(reivew) %>">Edit</a></td>
+                            <td>
+                                <form action="<%- deleteReviewPath(reivew) %>" method="POST">
+                                    <input type="hidden" name="_method" value="delete"/>
+                                    <input type = "submit" value="Delete"/>
+                                </form>
+                            </td>
+                        <% } %>
+                    <% } %>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        
+    <% } %>
+
+    <a href="<%- newReviewPath %>">New Reivew</a>
+<% } else {%>
+    <h3>You have no acces to this view</h3>
+<% } %>

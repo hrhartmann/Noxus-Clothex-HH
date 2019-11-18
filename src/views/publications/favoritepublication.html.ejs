@@ -1,0 +1,27 @@
+
+<% if (currentUser) { %>
+    <h2>Favorite Publication </h2>
+    <div>
+        <% if (locals.errors) { %>
+            <div class="errors">
+            You need to fix the following errors:
+            <ul>
+                <% errors.forEach(error => { %>
+                <li><%= error.message %></li>
+                <% }); %>
+            </ul>
+            </div>
+        <% } %>
+        <form action="<%- submitfavoritepublicationPath %>" method="post">
+            <div>
+              <div class='field'>
+                <input type="hidden" name='publicationid' value="<%= publicationid %>"/>
+              </div>
+                <input type="submit" name="create" value="Star"/>
+            </div>
+        </form>
+    </div>
+<% } else { %>
+    <p>You have to login to access favorite publications.</p>
+<% } %>
+

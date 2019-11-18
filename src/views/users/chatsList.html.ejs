@@ -1,0 +1,23 @@
+<body>
+    <% if (currentUser) {%>
+        <h2>Welcome to your chats</h2>
+        <% if (!chatsList.length) { %>
+            <p> You have no current chats </p>
+            <% console.log(chatsList.length) %>
+        <% } else { %>
+            <% chatsList.forEach((chat) => { %>
+                <div class="chats" >
+                    <% if (! user.id == chat.firstUser.id) { %>
+                        <a href="<%- firstUserProfilePath(chat) %>"><%- chat.firstUser.username %></a>
+                    <% } else { %>
+                        <a href="<%- secondUserProfilePath(chat) %>"><%- chat.secondUser.username %></a>
+                    <% } %>
+                    <p><%- chat.createdAt.toISOString().split('T')[0] %></p>
+                    <a href="<%- showChatPath(chat) %>">Show</a>
+                </div>
+            <% }) %>
+        <% } %>
+    <%} else {%>
+        <p>You are not allowed to enter this view, if you think this is an error, contact the Administrator.</p>
+    <%}%>
+</body>

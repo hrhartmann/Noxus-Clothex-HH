@@ -1,0 +1,75 @@
+
+
+.register-user-form, .publcation-form, .reviews-form{
+  position: fixed;
+  background-color: #59616eb4;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 30%;
+  left: 30%;
+}
+
+.form-control{
+  width: 600px;
+  background: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid black;
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+input{
+  height: 45px;
+}
+
+#logout-form {
+  height: 45px;
+  background: none;
+  position: fixed;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 2%;
+  left: 91%;
+}
+
+#logout-form input{
+  padding:5px 15px;
+  background: none;
+  display: block;
+  border:0 none;
+  cursor:pointer;
+  font-size: 18px;
+  color: #1e1e1e;
+  font-family: Cambria;
+}
+
+
+#logout-form input:hover {
+  color: white;
+  background: #96858F;
+  transition: 0.5s;
+}
+
+form .submit{
+  background: #ff5722;
+  border-color: transparent;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  height: 50px;
+  margin-top: 20px;
+}
+
+form .submit:hover{
+  background-color:  #f44336;
+  cursor: pointer;
+}
+
+::placeholder{
+  color: black;
+}
+
+.delete-button {
+  position: relative
+}

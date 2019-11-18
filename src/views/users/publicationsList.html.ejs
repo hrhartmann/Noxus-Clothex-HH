@@ -1,0 +1,34 @@
+<h2>Publications</h2>
+<% if (!publicationsList.length) { %>
+    <p>No publications found</p>
+<% } else { %>
+    <div id="publicationsList">
+        <% publicationsList.forEach((publication) => { %>
+            <div class="datos" name="datos">
+                <div class="publicationDiv">
+                    <h1><%- publication.title %></h1>
+                    <h3><%- publication.product.name %></h3>
+                    <p><%- publication.description %></p>
+                    <div class="publicationPicture">
+                        <td><%- publication.image %></td>
+                    </div>
+                    <div class="publicationInfo">
+                        <p><%- publication.createdAt.toISOString().split('T')[0] %></p>
+                        <a href="<%- showPublicationPath(publication) %>">Show</a>
+                        <a href="<%- editPublicationPath(publication) %>">Edit</a>
+                        <p>
+                            <form action="<%- deletePublicationPath(publication) %>" method="POST">
+                                <input type="hidden" name="_method" value="delete"/>
+                                <input type = "submit" value="Delete"/>
+                            </form>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+        
+    </div>
+<% } %>
+
+<a href="<%- userProfilePath %>">Back to profile</a>
+<p><a href="<%- newPublicationPath %>">New publication</a></p>

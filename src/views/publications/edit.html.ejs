@@ -1,0 +1,7 @@
+
+<% if (currentUser) { %>
+    <% if (currentUser.category == "Admin" || currentUser.id == publication.userId ) { %>
+    <h2>Edit Publication </h2>
+    <%- include('_form') %>
+    <% } %>
+<% } %>

@@ -1,0 +1,8 @@
+<% if (currentUser) { %>
+    <% if (currentUser.category == "Admin" || currentUser.id == message.userId ) { %>
+      <h2>Chat Edition</h2>
+      <%- include('_form') %>
+    <% } %>
+<% } else {%>
+    <h3>You have no acces to this view</h3>
+<% } %>

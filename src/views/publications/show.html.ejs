@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Show publication</title>
+  </head>
+
+  <body>
+        <h2>Publication info</h2>
+        <% if (!publication) { %>
+            <p>Publication not found</p>
+        <% } else { %>
+            <table id="publication">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>User</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td><%- publication.title %></td>
+                            <td><%- publication.description %></td>
+                            <td><a href="<%- showOwnerPath(publication) %>"><%- publication.user.username %></a></td>
+                        </tr>
+                </tbody>
+            </table>
+            <% if (currentUser) { %>
+              <div id="react-dist-notice"
+                data-cuserlat="<%= currentUser.lat %>"
+                data-cuserlong="<%= currentUser.long %>"
+                data-ouserlat="<%= publication.user.lat %>"
+                data-ouserlong="<%= publication.user.long %>">
+                </div>
+
+                <a href="<%- newCommentPath %>">Comment publication</a>
+                <% if (publication.userId != currentUser.id) { %>
+                    |
+                    <a href="<%- newTradePath %>">Request trade</a>
+                <% } %>
+            <% } %>
+        <% } %>
+
+        <div class="comments">
+            <h2>Comments</h2>
+            <% if (!commentsList.length) { %>
+                <p>This publication has no comments.</p>
+            <% } else { %>
+                <table id="commentsList">
+                    <thead>
+                        <tr>
+                            <th>Content</th>
+                            <th>User</th>
+                            <th>Posted At</th>
+                            <% if (currentUser) { %>
+                                <th colspan="2">Actions</th>
+                            <% } %>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% commentsList.forEach((comment) => { %>
+                            <tr>
+                                <td><%- comment.content %></td>
+                                <td><a href="<%- showOwnerPath(comment) %>"><%- comment.user.username %></a></td>
+                                <td><%- comment.createdAt.toISOString().split('T')[0] %></td>
+                                <% if (currentUser) { %>
+                                    <td><a href="<%- editCommentPath(comment) %>">Edit</a></td>
+                                    <td>
+                                        <form action="<%- deleteCommentPath(comment) %>" method="POST">
+                                            <input type="hidden" name="_method" value="delete"/>
+                                            <input type = "submit" value="Delete"/>
+                                        </form>
+                                    </td>
+                                <% } %>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } %>
+        </div>
+  </body>
+
+
+</html>

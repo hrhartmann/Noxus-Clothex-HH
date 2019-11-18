@@ -1,0 +1,23 @@
+<div>
+        <% if (currentUser) { %>
+            <% if (locals.errors) { %>
+                <div class="errors">
+                    You need to fix the following errors:
+                    <ul>
+                    <% errors.forEach(error => { %>
+                        <li><%= error.message %></li>
+                    <% }); %>
+                    </ul>
+                </div>
+            <% } %>
+            <form action="<%= submitMessagePath %>" method="post">
+                <div class="field">    
+                    <label for="content">Content</label>
+                    <input type="text" name="content" value="<%= message.content %>" />       
+                </div>
+                <div>
+                    <input type="submit" name="create" value="Create"/>
+                </div>
+            </form>
+        <% } %>
+</div>

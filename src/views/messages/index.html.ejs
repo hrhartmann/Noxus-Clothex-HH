@@ -1,0 +1,45 @@
+<h2>Message</h2>
+<% if (currentUser) {%>
+<% if (!messagesList.length) { %>
+    <p>No results</p>
+<% } else { %>
+    <table id="messagesList">
+        <thead>
+            <tr>
+                <th>Sender Name</th>
+                <th>Receiver Name</th>
+                <th>Content</th>
+                <th>Sended at</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% messagesList.forEach((message) => { %>
+                <tr>
+                    <td><a href="<%- senderPath(message) %>"><%- message.sender.username %></a></td>
+                    <td><a href="<%- receiverPath(message) %>"><%- message.receiver.username %></a></td>
+                    <td><%- message.content %></td>
+                    <td><%- message.createdAt.toISOString().split('T')[0]%></td>
+
+                    <% if (currentUser) { %>
+                        <% if (currentUser.category == "Admin" || currentUser.id == message.userId ) { %>
+
+                            <td><a href="<%- editMessagePath(message) %>">Edit</a></td>
+                            <td>
+                                <form action="<%- deleteMessagePath(message) %>" method="POST">
+                                    <input type="hidden" name="_method" value="delete"/>
+                                    <input type = "submit" value="Delete"/>
+                                </form>
+                            </td>
+                        <% } %>
+                    <% } %>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+<% } %>
+
+<a href="<%- newMessagePath %>">New Message</a>
+<% } else { %>
+    <p>you have no acces to this views</p>
+<% } %>

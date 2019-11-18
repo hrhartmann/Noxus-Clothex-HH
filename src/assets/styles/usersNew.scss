@@ -1,0 +1,56 @@
+.users-new, .users-edit {
+    form {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        width: 45%;
+        background-color:  #6d7993;
+        .field {
+            position: relative;
+            margin: 20px;
+            height: 40px;
+            width: 50%;
+            border-bottom: 1px solid black;
+            label {
+                display: block;
+                top: 20px;
+                position: absolute;
+                font-size: 15px;
+                transition: top 0.3s ease, font-size 0.3s ease;
+            }
+            input[type="text"], input[type="password"], input[type="username"] {
+                position: absolute;
+                padding: 0;
+                height: 70%;
+                left: 0;
+                bottom: -5%;
+                width: 100%;
+                font-size: 15px;
+                background: none;
+                border: none;
+            }
+    
+            input[type="text"]:focus, input[type="password"]:focus, input[type="username"]:focus {
+                outline: none;
+            }
+
+            .active {
+                top: 0;
+                font-size: 10px;
+            }
+        }
+        .create-button {
+            background-color: #e7e7e7; 
+            color: black; /* Green */
+            border: none;
+            border-radius: 23px;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin-left: 20px;
+        }
+    }
+}

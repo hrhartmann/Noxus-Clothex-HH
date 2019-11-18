@@ -1,0 +1,7 @@
+
+<% if (currentUser) { %>
+    <% if (currentUser.category == "Admin" || currentUser.id == trade.userId ) { %>
+      <h2>Edit Trade</h2>
+      <%- include('_form') %>
+    <% } %>
+<% } %>

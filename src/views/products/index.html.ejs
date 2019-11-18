@@ -1,0 +1,47 @@
+<h2>Product</h2>
+<% if (currentUser) {%>
+    <% if (!productsList.length) { %>
+        <p>No results</p>
+    <% } else { %>
+        <table id="productsList">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Owner</th>
+                    <th>Category</th>
+                    <th>Exchange Price</th>
+                    <th>Status</th>
+                    <th>Description</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% productsList.forEach((product) => { %>
+                    <tr>
+                        <td><%- product.name %></td>
+                        <td><%- product.userId %></td>
+                        <td><%- product.categoryId %></td>
+                        <td><%- product.exchangePrice %></td>
+                        <td><%- product.status %></td>
+                        <td><%- product.description %></td>
+                        <td><a href="<%- editProductPath(product) %>">Edit</a></td>
+                        <td>
+                        <% if (currentUser) { %>
+                            <% if (currentUser.category == "Admin" || currentUser.id == product.userId ) { %>
+                                <form action="<%- deleteProductPath(product) %>" method="POST" class="delete-button">
+                                    <input type="hidden" name="_method" value="delete"/>
+                                    <input type = "submit" value="Delete"/>
+                                </form>
+                            <% } %>
+                        <% } %>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+
+    <a href="<%- newProductPath %>">New Product</a>
+<% } else {%>
+    <h3>You have no acces to this view</h3>
+<% } %>

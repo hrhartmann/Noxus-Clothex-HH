@@ -1,0 +1,25 @@
+  <body>
+    <h2>Publications</h2>
+    <% if (!publicationsList.length) { %>
+        <p>No results</p>
+    <% } else { %>
+        <% if (currentUser) {%>
+            <div id="publications-filters"
+            data-currentuserbool="<%= currentUser===undefined %>"
+            data-currentuserid="<%= currentUser.id %>"
+            data-currentusercategory="<%= currentUser.category %>"
+            data-cuserlat="<%= currentUser.lat %>"
+            data-cuserlong="<%= currentUser.long %>"
+            ></div>
+        <% } else { %>
+            <div id="publications-filters"
+            data-currentuserbool="<%= currentUser===undefined %>"
+            data-currentuserid="none"
+            data-currentusercategory="none"
+            data-cuserlat="none"
+            data-cuserlong="none"
+            ></div>
+        <% } %>
+        
+    <% } %>
+  </body>

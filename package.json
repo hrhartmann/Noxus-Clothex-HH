@@ -1,5 +1,5 @@
 {
-  "name": "my-university",
+  "name": "clothex",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -38,7 +38,11 @@
     "webpack-command": "^0.5.0"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
+    "bcrypt": "^3.0.6",
     "core-js": "^3.2.1",
+    "csv-parser": "^2.3.1",
+    "dotenv": "^8.1.0",
     "koa": "^2.7.0",
     "koa-body": "^4.1.1",
     "koa-ejs": "^4.2.0",
@@ -51,6 +55,7 @@
     "nodemailer": "^6.3.0",
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
+    "pkgcloud": "^2.1.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

@@ -1,0 +1,56 @@
+<head>
+    <meta charset="utf-8">
+    <title>Show user</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="<%= assetPath('navBar.scss') %>">
+</head>
+<body>
+<% if (currentUser) { %>
+<% if (currentUser.category == "Admin") { %>
+    <h2>Users</h2>
+    <% if (!usersList.length) { %>
+        <p>No results</p>
+    <% } else { %>
+        <table id="usersList">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Adress</th>
+                    <th>Phone Number</th>
+                    <th>Reputation</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% usersList.forEach((user) => { %>
+                    <tr>
+                        <td><%- user.name %></td>
+                        <td><%- user.lastName %></td>
+                        <td><%- user.username %></td>
+                        <td><%- user.email %></td>
+                        <td><%- user.adress %></td>
+                        <td><%- user.phoneNumber %></td>
+                        <td><%- user.reputation %></td>
+                        <td><a href="<%- editUserPath(user) %>">Edit</a></td>
+                        <td><a href="<%- showUserPath(user) %>">Show</a></td>
+                        <td>
+                            <form action="<%- deleteUserPath(user) %>" method="POST">
+                                <input type="hidden" name="_method" value="delete"/>
+                                <input type = "submit" value="Delete"/>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+    <% } else { %>
+    <p>You are not allowed to enter this view, if you think this is an error, contact the Administrator.</p>
+    <% } %>
+    <% } else {%>
+        <h3>You have no acces to this view</h3>
+    <% } %>
+</body>
+

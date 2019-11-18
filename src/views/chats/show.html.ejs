@@ -1,0 +1,42 @@
+<h1>Show chat</h1>
+<% if (currentUser) {%>
+    <% if (!messagesList.length) { %>
+        <p>No messages found</p>
+    <% } else { %>
+        <% messagesList.forEach((message) => { %>
+            <% if (user.id == message.sender.id) { %>
+                <div class="message-sender">
+                    <p><a href="<%-senderProfilePath(message)%>"><%- message.sender.username %></a></p>
+                    <p><a href="<%-receiverProfilePath(message)%>"><%- message.receiver.username%></a></p>
+                    <p><%- message.content %></p>
+                    
+                    
+                    <% if (user.id === message.senderUserId) {%>
+                    <p>
+                        <div class="buttons">
+                        <p><a class="button" href="<%- editMessagePath(message) %>">Edit</a></p>
+                        <form action="<%- deleteMessagePath(message) %>" method="POST">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <input type = "submit" class="delete-button" value="Delete"/>
+                        </form>
+                        </div>
+                    </p>
+                    <span class="time-left"><%- message.createdAt.toISOString().split('T')[0] %></span>
+                    <% } %>
+                </div>
+            <% } else { %>
+                <div class="message-receiver">
+                    <p><a href="<%-senderProfilePath(message)%>"><%- message.sender.username %></a></p>
+                    <p><a href="<%-receiverProfilePath(message)%>"><%- message.receiver.username%></a></p>
+                    <p><%- message.content %></p>
+                    <span class="time-right"><%- message.createdAt.toISOString().split('T')[0] %></span>
+                </div>
+            <% } %>
+        <% }) %>
+    <% } %>
+
+    <a href="<%- userProfilePath %>">Back to profile</a>
+    <p><a href="<%- newMessagePath %>">New Message</a></p>
+<% } else {%>
+    <h3>You have no acces to this view</h3>
+<% } %>

@@ -15,6 +15,25 @@ const orm = require('./models');
 // App constructor
 const app = new Koa();
 
+app.use(async(ctx, next) => {
+  try {
+    await next()
+    const status = ctx.status || 404
+    if (status === 404) {
+        ctx.throw(404)
+    }
+  } catch (err) {
+    ctx.status = err.status || 500
+    if (ctx.status === 404) {
+      //Your 404.jade
+      await ctx.render(ctx.router.url('errors.404'), {publicationsListPath: ctx.router.url('publications.list'), layout:false})
+    } else {
+      console.log(err)
+      await ctx.render(ctx.router.url('errors.500'), {publicationsListPath: ctx.router.url('publications.list'), layout:false})
+    }
+  }
+})
+
 const developmentMode = app.env === 'development';
 
 app.keys = [

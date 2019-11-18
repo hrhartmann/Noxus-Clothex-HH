@@ -1,0 +1,86 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+  <title>Map at a specified location</title>
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <script type="text/javascript" src='../test-credentials.js'></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+  </head>
+<div>
+    <% if (locals.errors) { %>
+        <div class="errors">
+          You need to fix the following errors:
+          <ul>
+            <% errors.forEach(error => { %>
+              <li><%= error.message %></li>
+            <% }); %>
+          </ul>
+        </div>
+    <% } %>
+    <link rel="stylesheet" type="text/css" media="screen" href="<%= assetPath('base.scss') %>">
+    <div class='section1'>
+    <form class="register-user-form" action="<%= submitUserPath %>" method="post">
+        <% if (!user.isNewRecord) { %>
+            <input type="hidden" name="_method" value="patch" />
+        <% } else { %>
+            <h2 >Create your account</h2>
+        <% } %>
+        <div class="field">
+          <label for="Name">Name</label>
+            <input type="text" name="name" value="<%= user.name %>" />
+        </div>
+        <div class="field">
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" value="<%= user.lastName %>" />
+        </div>
+        <div class="field">
+            <label for="username">User Name</label>
+            <input type="username" name="username" value="<%= user.username %>" />
+        </div>
+        <div class="field">
+            <label for="password">Password</label>
+            <input type="password" name="password" value="<%= user.password %>" />
+        </div>
+        <div class="field">
+            <label for="email">Email</label>
+            <input type="text" name="email" value="<%= user.email %>" />
+        </div>
+        <div class="field">
+            <label for="adress">Adress</label>
+            <input type="text" name="adress" value="<%= user.adress %>" />
+        </div>
+        <div class="field">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" name="phoneNumber" value="<%= user.phoneNumber %>" />
+        </div>
+      <div>
+        <input name="lat" class="position-input" id="lat" type="hidden" />
+        <input name="long" class="position-input" id="long" type="hidden" />
+        <button class="next-reg-button" type='button'>Next</button>
+      </div>
+      </div>
+      <div class="map">
+          <h2>Click on your location</h2>
+          <div id="map"></div>
+          <button class="back-btn" type='button'>Back</button>
+          <% if (currentUser) { %>
+            <% if (currentUser.category == "Admin") { %>
+              <div class="field">
+                  <label for="category">Category</label>
+                  <input type="text" name="Category" value="<%= user.category %>" />
+              </div>
+            <% }} %>
+          <div>
+              <% if (user.isNewRecord) { %>
+                  <input type="submit" class='create-button' name="create" value="Create"/>
+              <% } else { %>
+                  <input type="submit" name="update" value="Update"/>
+              <% } %>
+          </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,28 @@
+<h2>Products</h2>
+<% if (!productsList.length) { %>
+    <p>No products found</p>
+<% } else { %>
+    <div id="productsList">
+            <% productsList.forEach((product) => { %>
+                <div class="datos" name="datos">
+                    <div class="productDiv">
+                        <h1><%- product.name %></h1>
+                        <h3><%- product.description %></h3>
+                        <p><%- product.exchangePrice %></p>
+                        <p><%- product.status %></p>
+                        <p><%- product.createdAt.toISOString().split('T')[0] %></p>
+                        <a href="<%- editProductPath(product) %>">Edit</a>
+                        <p>
+                            <form action="<%- deleteProductPath(product) %>" method="POST">
+                                <input type="hidden" name="_method" value="delete"/>
+                                <input type="submit" value="Delete"/>
+                            </form>
+                        </p>
+                    </div>
+                </div>
+            <% }) %>
+    </div>
+<% } %>
+
+<p><a href="<%- userProfilePath %>">Back to profile</a></p>
+<p><a href="<%- newProductPath %>">New product</a></p>

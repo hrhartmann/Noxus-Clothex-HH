@@ -1,0 +1,84 @@
+body{
+  background-color: #9099A2;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#mainLogo{
+position: absolute;
+top: 400px;
+left: 45%;
+}
+.container h1{
+color: white;
+font-size: 60px;
+}
+
+.mainPageInfo{
+text-align: center;
+height: 680px;
+padding-top:170px;
+padding-bottom:70px;
+}
+
+.container a{
+display: inline-block;
+width: 120px;
+font-size: 30px;
+}
+
+.divisors{
+border-right: 1px solid black;
+}
+
+.indexBody nav{
+display:none;
+}
+
+.indexBody .logo img{
+display:none;
+}
+
+.footer{
+bottom:0;
+background-color: #6D7993;
+color: #D5D5D5;
+clear: both;
+}
+.footer .indicator{
+font-weight: bold; 
+}
+.firstImage{
+position: relative;
+text-align: center;
+font-size: 40px;
+color:white;
+}
+.appExplanation{
+display:flex;
+flex-direction: row;
+justify-content: space-evenly;
+}
+.overImageTextOne{
+position: absolute;
+top: 90%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+.secondImage{
+position: relative;
+text-align: center;
+font-size: 40px;
+color:white;
+}
+.overImageTextTwo{
+position: absolute;
+top: 90%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+.teamInfo{
+font-style: italic;
+display:flex;
+font-size: 10px;
+flex-direction: row;
+justify-content: space-evenly;
+}

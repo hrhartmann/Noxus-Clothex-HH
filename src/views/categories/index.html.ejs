@@ -1,0 +1,40 @@
+<h2>Category</h2>
+<% if (!categoriesList.length) { %>
+    <p>No results</p>
+<% } else { %>
+    <table id="categoriesList">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% categoriesList.forEach((category) => { %>
+                <tr>
+                    <td><%- category.name %></td>
+                    <td><%- category.description %></td>
+                    <% if (currentUser) { %>
+                        <% if (currentUser.category == "Admin") { %>
+                            <% if (category.id == 1) {%>
+                            <% } else { %>
+                                <td><a href="<%- editCategoryPath(category) %>">Edit</a></td>
+                                <td>
+                                <form action="<%- deleteCategoryPath(category) %>" method="POST">
+                                    <input type="hidden" name="_method" value="delete"/>
+                                    <input type = "submit" value="Delete"/>
+                                </form>
+                            <% } %>
+                        <% } %>
+                    <% } %>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+<% } %>
+<% if (currentUser) { %>
+    <% if (currentUser.category == "Admin") { %>
+      <a href="<%- newCategoryPath %>">New Category</a>
+    <% }} %>

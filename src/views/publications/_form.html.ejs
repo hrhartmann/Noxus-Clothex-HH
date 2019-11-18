@@ -1,0 +1,58 @@
+<div>
+    <% if (locals.errors) { %>
+        <div class="errors">
+          You need to fix the following errors:
+          <ul>
+            <% errors.forEach(error => { %>
+              <li><%= error.message %></li>
+            <% }); %>
+          </ul>
+        </div>
+    <% } %>
+    <% if (currentUser) { %>
+        <form class="publcation-form" action="<%= submitPublicationPath %>" method="post">
+            <% if (!publication.isNewRecord) { %>
+                <input type="hidden" name="_method" value="patch" />
+            <% } %>
+            <div class="field">
+                <label for="title">Title</label>
+                <input type="text" name="title" value="<%= publication.title %>" />
+            </div>
+            <div class="field">
+                <label for="image">Image</label>
+                <input type="image" name="image" value="<%= publication.image %>" />       
+            </div>
+            <div class="field">    
+                <label for="Description">Description</label>
+                <input type="text" name="description" value="<%= publication.description %>" />       
+            </div>
+            <% if (publication.isNewRecord) { %>
+                <div class="field">
+                    <% if(productsList.length) { %>
+                        <select name="product">
+                            <% productsList.forEach((product) => { %>
+                                <option value="<%= product.id %>"><%- product.name %></option>
+                            <% }) %>
+                        </select>
+                    <% } else { %>
+                        <p> you don't have any product <a href="<%= newProductPath %>">Create one</a></p>
+                    <% } %>
+            <% } %>
+            </div>
+            <div>
+                <% if(productsList.length) { %>
+                    <% if (publication.isNewRecord) { %>
+                        <input type="submit" name="create" value="Create"/>
+                    <% } else { %>
+                        <input type="submit" name="update" value="Update"/>
+                    <% } %>
+                <% } %>
+            </div>
+        </form>
+    <% } else {%>
+        <div class="notAutorized">
+            <h2>You are not logged in</h2>
+            <a href="<%= newUserPath %>">Register Now</a>
+        </div>
+    <% } %>
+</div>

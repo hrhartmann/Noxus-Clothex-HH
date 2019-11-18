@@ -1,0 +1,42 @@
+<h2>Chat</h2>
+<% if (currentUser) {%>
+    <% if (!chatsList.length) { %>
+        <p>No results</p>
+    <% } else { %>
+        <table id="chatsList">
+            <thead>
+                <tr>
+                    <th>User1</th>
+                    <th>User2</th>
+                    <th>Date</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% chatsList.forEach((chat) => { %>
+                    <tr>
+                        <td><%- chat.userId %></td>
+                        <td><%- chat.secondUserId %></td>
+                        <td><%- chat.createdAt.toISOString().split('T')[0] %></td>
+                        <% if (currentUser) { %>
+                            <% if (currentUser.category == "Admin" || currentUser.id == chat.userId || currentUser.id == chat.secondUserId) { %>
+                            <td><a href="<%- editChatPath(chat) %>">Edit</a></td>
+                            <td>
+                                <form action="<%- deleteChatPath(chat) %>" method="POST">
+                                    <input type="hidden" name="_method" value="delete"/>
+                                    <input type = "submit" value="Delete"/>
+                                </form>
+                            </td>
+                            <% } %>
+                        <% } %>
+
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+
+    <a href="<%- newChatPath %>">New Chat</a>
+<% } else {%>
+    <h3>You have no acces to this view</h3>
+<% } %>

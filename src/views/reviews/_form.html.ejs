@@ -1,0 +1,54 @@
+<div>
+    <% if (locals.errors) { %>
+        <div class="errors">
+            You need to fix the following errors:
+            <ul>
+            <% errors.forEach(error => { %>
+                <li><%= error.message %></li>
+            <% }); %>
+            </ul>
+        </div>
+    <% } %>
+    <form class= "reviews-form"action="<%= submitReviewPath %>" method="post">
+        <% if (!review.isNewRecord) { %>
+            <input type="hidden" name="_method" value="patch" />
+        <% } %>
+        <div class="field">
+            <p>Punctuality</p>
+            <select name="puntuality">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="field">
+            <p>Satisfaction</p>
+            <select name="satisfaction">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="field">
+            <p>Quality</p>
+            <select name="quality">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div>
+            <% if (review.isNewRecord) { %>
+                <input type="submit" name="create" value="Create"/>
+            <% } else { %>
+                <input type="submit" name="update" value="Update"/>
+            <% } %>
+        </div>
+    </form>
+</div>

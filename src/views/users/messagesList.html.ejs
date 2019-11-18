@@ -1,0 +1,27 @@
+<h2>Messages</h2>
+<% if (!messagesList.length) { %>
+    <p>No messages found</p>
+<% } else { %>
+    <% messagesList.forEach((message) => { %>
+        <div class="message">
+            
+            <p> Sender: <a href="<%- senderPath(message) %>"><%- message.sender.username %></a></p>
+            <p> Receiver: <a href="<%- receiverPath(message) %>"><%- message.receiver.username %></a></p>
+            <p>Content: <%- message.content %></p>
+            <p>Posted At: <%- message.createdAt.toISOString().split('T')[0] %></p>
+            <% if (user.id === message.senderUserId) {%>
+            <p>Actions: </p>
+            <p>
+                <p><a href="<%- editMessagePath(message) %>">Edit</a></p>
+                <form action="<%- deleteMessagePath(message) %>" method="POST">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <input type = "submit" value="Delete"/>
+                </form>
+            </p>
+            <% } %>
+        </div>
+    <% }) %>
+<% } %>
+
+<a href="<%- userProfilePath %>">Back to profile</a>
+<p><a href="<%- newMessagePath %>">New Message</a></p>

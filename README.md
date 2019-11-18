@@ -1,53 +1,64 @@
-# My University
+# Noxus
 
-Template example built with [koa](http://koajs.com/) for IIC2513 - Tecnologías y Aplicaciones Web, Pontificia Universidad Católica de Chile.
+Link: http://clothexnoxus.herokuapp.com/
 
-## Prerequisites:
-* PostgreSQL
-  * you will need a database with name and user/password as configured in `src/config/database.js`
-* Node.js v10 or above
-* [Yarn](https://yarnpkg.com)
+## Tabla de contenidos
 
-## Project Setup
+- [Usuarios relacionados](#usuarios-relacionados)
+    - [Profesor](#profesor)
+    - [Ayudante](#ayudante)
+    - [Integrantes](#integrantes)
+- [Comentarios](#comentarios)
 
-* Clone repository
-* Install dependencies:
-  * `yarn install`
+---
 
-## Database Setup (development)
+## Usuarios relacionados
 
-### Install postgresql
-* On Mac OS X using Homebrew: `brew install postgresql`
-  * Start service: check [LaunchRocket](https://github.com/jimbojsb/launchrocket) or [lunchy](https://www.moncefbelyamani.com/how-to-install-postgresql-on-a-mac-with-homebrew-and-lunchy/) for postgresql service management
-* [Other platforms](https://www.postgresql.org/download/)
+### Profesor
 
-### Create development database
+Nombre        | Github     | Email
+--------------|------------|---------------
+Gabriel Vidal | [@gpvidal] | [gpvidal@uc.cl]
+### Ayudante
 
-```sh
-createdb iic2513template_dev
-```
+Nombre           | Github        | Email
+-----------------|---------------|------------------
+Vicente Aguilera | [@vjaguilera] | [vjagulera@uc.cl]
 
-### Run migrations
-```sh
-./node_modules/.bin/sequelize db:migrate
-```
+### Integrantes
 
-## Run the app!
+Nombre            | Github         | Email
+------------------|----------------|--------------------
+Sebastián Carreño | [@sgcarreno]   | [sgcarreno@uc.cl]
+Hans Hartmann     | [@hrhartmann]  | [hrhartmann@uc.cl]
+Andrés Pincheira  | [@arpincheira] | [arpincheira@uc.cl]
 
-```sh
-yarn start
-```
+[@gpvidal]: https://github.com/gpvidal
+[gpvidal@uc.cl]: mailto:gpvidal@uc.cl
+[@vjaguilera]: https:github.com/vjaguilera
+[vjagulera@uc.cl]: mailto:vjaguilera@uc.cl
+[@sgcarreno]: https:github.com/sgcarreno
+[sgcarreno@uc.cl]: mailto:sgcarreno@uc.cl
+[@hrhartmann]: https:github.com/hrhartmann
+[hrhartmann@uc.cl]: mailto:hrhartmann@uc.cl
+[@arpincheira]: https:github.com/arpincheira
+[arpincheira@uc.cl]: mailto:arpincheira@uc.cl
 
-or directly
+---
 
-```sh
-node index.js
-```
+## Entrega 3:
 
-or, if you want automatic restart after any change in your files
-
-```sh
-yarn dev
-```
-
-Now go to http://localhost:3000 and start browsing :)
+- Correcciones de la entrega anterior
+    - CRUDS faltantes
+    - CRUDS que no funcionaban
+    - Views de algunos modelos
+- Comentarios
+    - Login
+    - Register
+    - Home page
+    - API
+    - Mailer
+    - Mensajeria
+    - Barra de navegación
+    - reviews crud http://clothexnoxus.herokuapp.com/reviews/
+    

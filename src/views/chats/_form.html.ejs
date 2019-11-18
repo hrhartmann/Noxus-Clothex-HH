@@ -1,0 +1,37 @@
+
+<div>
+    <% if (currentUser) { %>
+        <% if (locals.errors) { %>
+            <div class="errors">
+                You need to fix the following errors:
+                <ul>
+                <% errors.forEach(error => { %>
+                    <li><%= error.message %></li>
+                <% }); %>
+                </ul>
+            </div>
+        <% } %>
+        <form action="<%= submitChatPath %>" method="post">
+            <% if (!chat.isNewRecord) { %>
+                <input type="hidden" name="_method" value="patch" />
+            <% } %>
+            <div class="field">
+                <select name="receiver">
+                    <% userList.forEach((forUser) => { %>
+                        <% if (forUser.id !== user.id) { %>
+                            <option value="<%= forUser.id %>"><%- forUser.username %></option>
+                        
+                        <% } %>
+                    <% }) %>
+                </select>
+            </div>
+            <div>
+                <% if (chat.isNewRecord) { %>
+                    <input type="submit" name="create" value="Create"/>
+                <% } else { %>
+                    <input type="submit" name="update" value="Update"/>
+                <% } %>
+            </div>
+        </form>
+    <% } %>
+</div>

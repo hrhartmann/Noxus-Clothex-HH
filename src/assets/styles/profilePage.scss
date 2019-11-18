@@ -1,0 +1,50 @@
+.profile-page{
+    max-width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: 8.3%;
+    box-sizing: border-box;
+    display: flex;
+    .profile-page-right{
+        max-width: 40%;
+        h1{
+            max-width: 40%;
+            color: #40424a;
+            font-size:100px;
+            margin-bottom: 20px;
+            line-height: normal;
+        }
+        h2{
+            font-size: 40px;
+        }
+        .user-info{
+            text-align: left;
+            h3{
+                font-size:30px;
+            }
+            p{
+                font-size:24px;
+            }
+            p a{
+                color:#40424a;
+            }
+        }
+    }
+    .profile-page-left{
+        padding-top:70px;
+        margin: 5px;
+        .profile-picture{
+            img{
+                height:300px;
+                width: 300px;
+                max-width: 100%;
+                padding-right: 15px;
+            }
+        }
+        .user-publications{
+            h2{
+                font-size:30px;
+            }
+        }
+    }
+}

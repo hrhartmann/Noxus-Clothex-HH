@@ -1,0 +1,92 @@
+<h2>Trades</h2>
+<% if (currentUser) { %>
+    <% if (!requestedTradesList.length) { %>
+        <p>No results</p>
+    <% } else { %>
+        <div id="react-trade-notifications"
+            data-currentuserbool="<%= currentUser===undefined %>"
+            data-currentuserid="<%= currentUser.id %>"
+            data-currentusercategory="<%= currentUser.category %>"
+        ></div>
+    <% } %>
+
+    <h2>Past trades</h2>
+    <% if (!pastTradesList.length) { %>
+        <p>No results</p>
+    <% } else { %>
+        <table id="pastTradesList">
+            <thead>
+                <tr>
+                    <th>Made to</th>
+                    <th>Made by</th>
+                    <th>Publication object</th>
+                    <th>Object offered</th>
+                    <th>State of trade</th>
+                    <th colspan="1">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% pastTradesList.forEach((trade) => { %> 
+                    <tr>
+                        <td><a href="<%- tradeReceiverProfilePath(trade) %>"><%- trade.tradeReceiver.name %></a></td>
+                        <td><a href="<%- tradeMakerProfilePath(trade) %>"><%- trade.tradeMaker.name %></a></td>
+                        <td><%- trade.objectRequested.name %></td>
+                        <td><%- trade.objectOffered.name %></td>
+                        <td><%- trade.state %></td>
+                        <% if (trade.feedBackList.length == 0 && trade.tradeReceiver.id == user.id) {%>
+                            <td><button id="<%- trade.id %>" class="showreview" >review</button></td>
+                        <% } else {%>
+                            <td></td>
+                        <% } %>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <% pastTradesList.forEach((trade) => { %>
+            <form id= "form-<%- trade.id %>" class= "reviews-form"action="<%= submitReviewPath(trade) %>" method="post">
+                <% if (!review.isNewRecord) { %>
+                    <input type="hidden" name="_method" value="patch" />
+                <% } %>
+                <div class="field">
+                    <p>Punctuality</p>
+                    <select name="puntuality">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <p>Satisfaction</p>
+                    <select name="satisfaction">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <p>Quality</p>
+                    <select name="quality">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div>
+                    <% if (review.isNewRecord) { %>
+                        <input type="submit" name="create" value="Create"/>
+                    <% } else { %>
+                        <input type="submit" name="update" value="Update"/>
+                    <% } %>
+                </div>
+            </form>
+        <% }) %>
+    <% } %>
+<%} else {%>
+    <p>you have no access to this views</p>
+<% } %>

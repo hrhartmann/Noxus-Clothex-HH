@@ -1,0 +1,42 @@
+<h2>Comment</h2>
+<% if (currentUser) { %>
+    <% if (!commentsList.length) { %>
+        <p>No results</p>
+    <% } else { %>
+        <table id="commentsList">
+            <thead>
+                <tr>
+                    <th>Owner</th>
+                    <th>Content</th>
+                    <th>Date</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% commentsList.forEach((comment) => { %>
+                    <tr>
+                        <td><%- comment.userId %></td>
+                        <td><%- comment.content %></td>
+                        <td><%- comment.createdAt.toISOString().split('T')[0] %></td>
+                        <% if (currentUser) { %>
+                            <% if (currentUser.category == "Admin" || currentUser.id == comment.userId ) { %>
+                            <td><a href="<%- editCommentPath(comment) %>">Edit</a></td>
+                            <td>
+                                <form action="<%- deleteCommentPath(comment) %>" method="POST">
+                                    <input type="hidden" name="_method" value="delete"/>
+                                    <input type = "submit" value="Delete"/>
+                                </form>
+                            </td>
+                            <% } %>
+                        <% } %>
+
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+
+    <a href="<%- newCommentPath %>">New Comment</a>
+<% } else { %>
+    <h3>You have no acces to this view</h3>
+<% } %>

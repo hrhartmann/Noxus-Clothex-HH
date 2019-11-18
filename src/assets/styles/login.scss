@@ -1,0 +1,49 @@
+.loginBody nav{
+    display:none;
+}
+
+.login-form{
+    position: relative;
+    top: 20px;
+    left: 0;
+    background: none;
+    display: flex;
+    flex-direction: column;
+    width: 585px;
+    height: 90;
+}
+.login-form input{
+    height: 15px;
+    margin-bottom: 15px;
+}
+.Login{
+    margin-top: 100px;
+    margin-left: 250px;
+    margin-right: 250px;
+    height: 300px;
+}
+.loginForm{
+    height: 240px;
+    left:100px;
+    right: 100px;
+    padding-left: 100px;
+    padding-right: 100px;
+    background-color: #6d7993;
+}
+.moreInfoLogin{
+    height:60px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 20px;
+    background-color: #D5D5D5;
+    padding-top: 20px;
+}
+
+.loginForm h1{
+    padding-top: 40px;
+}
+.loginBody .top{
+    height:65px;
+    top:0;
+    background-color: #6d7993;
+}
